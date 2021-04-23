@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
               width: 150,
               height: 150,
               decoration: BoxDecoration(
-                  color: Colors.purple[100],
+                  color: _purple.withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12.0)),
               child: Center(
                 child: Column(
@@ -43,30 +43,102 @@ class _HomeState extends State<Home> {
               margin: EdgeInsets.only(top: 20),
               padding: EdgeInsets.all(12),
               decoration: BoxDecoration(
-                color: Colors.transparent,
-                border: Border.all(
-                  color: Colors.blueGrey[100],
-                  style: BorderStyle.solid
-                ),
-                borderRadius: BorderRadius.circular(12)
-              ),
+                  color: Colors.transparent,
+                  border: Border.all(
+                      color: Colors.blueGrey[100], style: BorderStyle.solid),
+                  borderRadius: BorderRadius.circular(12)),
               child: Column(
                 children: [
                   TextField(
-                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    keyboardType:
+                        TextInputType.numberWithOptions(decimal: true),
                     style: TextStyle(color: _purple),
                     decoration: InputDecoration(
-                     prefixIcon: Icon(Icons.attach_money),
-                     hintText: 'Bill amount'
-                    ),
-                    onChanged: (value){
+                        prefixIcon: Icon(Icons.attach_money),
+                        hintText: 'Bill amount'),
+                    onChanged: (value) {
                       try {
                         _billAmount = double.tryParse(value);
-                       
-                      } catch (e) {
-                      }
-                      
+                      } catch (e) {}
                     },
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Split',
+                        style: TextStyle(color: Colors.grey.shade700),
+                      ),
+                      Row(
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                if (_personCounter > 1) {
+                                  _personCounter--;
+                                } else {
+                                  //do nothing
+                                }
+                              });
+                            },
+                            child: Container(
+                              width: 40,
+                              height: 40,
+                              margin: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                color: _purple.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(7.0),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '-',
+                                  style: TextStyle(
+                                      color: _purple,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Text(
+                            '$_personCounter',
+                            style: TextStyle(
+                                color: _purple,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 17.0),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              setState(() {
+                                if (_personCounter >= 1) {
+                                  _personCounter++;
+                                } else {
+                                  //do nothing
+                                }
+                              });
+                            },
+                            child: Container(
+                              width: 40,
+                              height: 40,
+                              margin: EdgeInsets.all(10.0),
+                              decoration: BoxDecoration(
+                                color: _purple.withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(7.0),
+                              ),
+                              child: Center(
+                                child: Text(
+                                  '+',
+                                  style: TextStyle(
+                                      color: _purple,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17.0),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
                   )
                 ],
               ),
