@@ -1,3 +1,4 @@
+import 'package:billsplitterflutter/util/hexcolor.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -9,6 +10,8 @@ class _HomeState extends State<Home> {
   int _tipPersentage = 0;
   int _personCounter = 1;
   double _billAmount = 0.0;
+
+  Color _purple = HexColor('#6908D6');
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +37,38 @@ class _HomeState extends State<Home> {
                     Text('\$34.5'),
                   ],
                 ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: Colors.transparent,
+                border: Border.all(
+                  color: Colors.blueGrey[100],
+                  style: BorderStyle.solid
+                ),
+                borderRadius: BorderRadius.circular(12)
+              ),
+              child: Column(
+                children: [
+                  TextField(
+                    keyboardType: TextInputType.numberWithOptions(decimal: true),
+                    style: TextStyle(color: _purple),
+                    decoration: InputDecoration(
+                     prefixIcon: Icon(Icons.attach_money),
+                     hintText: 'Bill amount'
+                    ),
+                    onChanged: (value){
+                      try {
+                        _billAmount = double.tryParse(value);
+                       
+                      } catch (e) {
+                      }
+                      
+                    },
+                  )
+                ],
               ),
             ),
           ],
