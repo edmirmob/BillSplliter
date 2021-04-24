@@ -13,6 +13,22 @@ class _HomeState extends State<Home> {
 
   Color _purple = HexColor('#6908D6');
 
+  calculateTotalPerPerson(billAmount, int splitBy, int tipPercentage) {
+    var totalPerPerson = (calculateTotalTip(billAmount, splitBy, tipPercentage) + billAmount)/splitBy;
+
+    return totalPerPerson.toStringAsFixed(2);
+  }
+
+  calculateTotalTip(double billAmount, int splitBy, int tipPercentage) {
+    double totalTip = 0.0;
+    if (billAmount < 0 || billAmount.toString().isEmpty || billAmount == null) {
+    } else {
+      totalTip = (billAmount * tipPercentage) / 100;
+    }
+
+    return totalTip;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +60,7 @@ class _HomeState extends State<Home> {
                       height: 10,
                     ),
                     Text(
-                      '\$34.5',
+                      '\$ ${calculateTotalPerPerson(_billAmount, _personCounter, _tipPersentage)}',
                       style: TextStyle(
                           color: _purple,
                           fontSize: 35,
@@ -165,7 +181,7 @@ class _HomeState extends State<Home> {
                       Padding(
                         padding: const EdgeInsets.all(17.0),
                         child: Text(
-                          '\$34',
+                          '\$ ${(calculateTotalTip(_billAmount, _personCounter, _tipPersentage)).toStringAsFixed(2)}',
                           style: TextStyle(
                               color: _purple,
                               fontSize: 17,
