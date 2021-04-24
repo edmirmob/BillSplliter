@@ -33,8 +33,23 @@ class _HomeState extends State<Home> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Total Per Person'),
-                    Text('\$34.5'),
+                    Text(
+                      'Total Per Person',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                          color: _purple),
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      '\$34.5',
+                      style: TextStyle(
+                          color: _purple,
+                          fontSize: 35,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ],
                 ),
               ),
@@ -157,6 +172,29 @@ class _HomeState extends State<Home> {
                               fontWeight: FontWeight.bold),
                         ),
                       ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '$_tipPersentage%',
+                        style: TextStyle(
+                            color: _purple,
+                            fontSize: 17,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Slider(
+                          min: 0,
+                          max: 100,
+                          divisions: 10,
+                          activeColor: _purple,
+                          inactiveColor: Colors.grey,
+                          value: _tipPersentage.toDouble(),
+                          onChanged: (value) {
+                            setState(() {
+                              _tipPersentage = value.round();
+                            });
+                          })
                     ],
                   )
                 ],
