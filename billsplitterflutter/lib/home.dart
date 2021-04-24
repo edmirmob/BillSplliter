@@ -137,7 +137,26 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ],
-                      )
+                      ),
+                    ],
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Tip',
+                        style: TextStyle(color: Colors.grey.shade700),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(17.0),
+                        child: Text(
+                          '\$34',
+                          style: TextStyle(
+                              color: _purple,
+                              fontSize: 17,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
                     ],
                   )
                 ],
